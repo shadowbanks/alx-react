@@ -1,0 +1,45 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.App {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  height: 100vh;
+  grid-template-rows: 25% 67% 8%;
+}
+
+.App-header {
+  border-bottom: 0.2rem solid #e0354b;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1rem;
+  color: #e0354b;
+  font-weight: 800;
+  font-size: 1.5rem;
+  margin: 0;
+  padding: 0;
+}
+
+.App-logo {
+  max-height: calc(0.9 * 25vh);
+}
+
+.App-body {
+  padding: 3rem 2rem 0;
+  font-size: 1.2rem;
+  border-bottom: 0.2rem solid #e0354b;
+}
+
+.App-footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-style: italic;
+  font-weight: 300;
+  font-size: 1.2rem;
+}
