@@ -20,11 +20,11 @@ class App extends Component {
         </header>
         <div className='App-body'>
           <p>Login to access the full dashboard</p>
-          <label htmlFor='email' onClick={() => this.onLabelClick('email')}>Email</label>
-          <input id='email' type='email' name='email' />
-          <label htmlFor='password' onClick={() => this.onLabelClick('password')}>Password</label>
-          <input id='password' type='password' name='password' />
-          <input id='ok' type='button' name='ok_button' value='OK' />
+          <label htmlFor='email' onClick={() => this.onLabelClick('email')}>Email:</label>
+          <input className='email' type='email' name='email' />
+          <label htmlFor='password' onClick={() => this.onLabelClick('password')}>Password:</label>
+          <input className='password' type='password' name='password' />
+          <input className='ok' type='button' name='ok_button' value='OK' />
         </div>
         <div className='App-footer'>
           <p>Copyright { getFullYear() } - { getFooterCopy() } </p>
