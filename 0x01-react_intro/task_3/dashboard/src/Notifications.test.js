@@ -1,5 +1,5 @@
 import React from "react";
-import { shallow } from './enzyme';
+import { shallow } from 'enzyme';
 import Notifications from "./Notifications";
 
 describe('<Notifications />', () => {
@@ -10,7 +10,7 @@ describe('<Notifications />', () => {
 
     it('verify that <Notifications /> renders three list items', () => {
         const notifications = shallow(<Notifications />);
-        expect(notifications.find('li')).to.have.lengthOf(3);
+        expect(notifications.find('li')).toHaveLength(3);
     });
 
     it('verify that <Notifications /> renders the text ...', () => {
