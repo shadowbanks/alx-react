@@ -1,6 +1,8 @@
 {
   "devDependencies": {
     "enzyme": "^3.11.0",
-    "enzyme-adapter-react-16": "^1.15.7"
+    "enzyme-adapter-react-16": "^1.15.7",
+    "webpack": "^5.90.1",
+    "webpack-cli": "^5.1.4"
   }
 }
