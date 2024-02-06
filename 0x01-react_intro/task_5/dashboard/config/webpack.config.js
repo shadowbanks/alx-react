@@ -2,19 +2,18 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-    mode: "development",
-    entry: '../src/index.js',
+    entry: path.resolve(__dirname, '../src/index.js'),
     output: {
-        path: path.resolve(__dirname, 'dist'),
         filename: 'bundle.js',
     },
+    mode: "development",
     devtool: "inline-source-map",
     devServer: {
         static: "./dist",
         hot: true,
         compress: true,
         open: true,
-        post: 8564,
+        port: 8564,
     },
     module: {
         rules: [
@@ -44,7 +43,8 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            template: './dist/index.html',
+            title: 'dashboard',
+            template: path.resolve(__dirname, '../dist/index.html'),
         }),
     ],
 };

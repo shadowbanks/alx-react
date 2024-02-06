@@ -3,12 +3,25 @@ const path = require('path');
 module.exports = {
     mode: 'development',
     entry: {
-        main: path.resolve(__dirname, './js/dashboard_main.js'),
+        header: {
+            import: './modules/header/header.js',
+            dependOn: 'shared',
+        },
+        body: {
+            import: './modules/body/body.js',
+            dependOn: 'shared',
+        },
+        footer: {
+            import: './modules/footer/footer.js',
+            dependOn: 'shared',
+        },
+        shared: 'jquery',
     },
     output: {
         path: path.resolve(__dirname, 'public'),
-        filename: 'bundle.js',
+        filename: '[name].bundle.js',
     },
+    devtool: 'inline-source-map',
     devServer: {
         static: path.resolve(__dirname, 'public'),
         port: 8564,
@@ -34,5 +47,17 @@ module.exports = {
                 ],
             },
         ]
+    },
+    Plugins: [
+        new HtmlWebpackPlugin({
+            title: 'Webpack',
+            filename: './index.html',
+        }),
+        new CleanWebpackPlugin(),
+    ],
+    optimization: {
+        splitChunks: {
+            chunks: 'all',
+        },
     },
 };
