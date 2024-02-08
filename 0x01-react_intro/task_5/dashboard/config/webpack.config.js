@@ -1,17 +1,18 @@
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
-    entry: path.resolve(__dirname, '../src/index.js'),
-    output: {
-        filename: 'bundle.js',
-    },
     mode: "development",
+    entry: "./src/index.js",
+    output: {
+        filename: "bundle.js",
+        path: path.resolve(__dirname, 'dist')
+    },
     devtool: "inline-source-map",
     devServer: {
-        static: "./dist",
-        hot: true,
+        static: './dist',
         compress: true,
+        hot: true,
         open: true,
         port: 8564,
     },
@@ -19,17 +20,16 @@ module.exports = {
         rules: [
             {
                 test: /\.css$/,
-                use: ['style-loader', 'css-loader'],
+                use: ["style-loader", "css-loader"],
             },
             {
                 test: /\.(png|jpe?g|gif|svg)$/i,
                 use: [
-                    'file-loader',
-                    {
-                        loader: 'image-webpack-loader',
+                    "file-loader", {
+                        loader: "image-webpack-loader",
                         options: {
-                            disable: true,
                             bypassOnDebug: true,
+                            disable: true,
                         },
                     },
                 ],
@@ -37,14 +37,19 @@ module.exports = {
             {
                 test: /\.(jsx?)$/,
                 exclude: /node_modules/,
-                use: ["babel-loader"],
+                use: {
+                    loader: "babel-loader",
+                },
             },
         ],
     },
+    resolve: {
+        extensions: [".*", ".js", ".jsx"],
+    },
     plugins: [
         new HtmlWebpackPlugin({
-            title: 'dashboard',
-            template: path.resolve(__dirname, '../dist/index.html'),
+            title: 'Dashboard',
+            filename: 'index.html',
         }),
     ],
 };
