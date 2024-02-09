@@ -1,55 +1,53 @@
-const path = require('path');
+const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const { title } = require("process");
 
 module.exports = {
-    mode: "development",
     entry: "./src/index.js",
-    output: {
-        filename: "bundle.js",
-        path: path.resolve(__dirname, 'dist')
-    },
-    devtool: "inline-source-map",
+    plugins: [
+        new HtmlWebpackPlugin({
+            title: "Dashboard",
+            template: "./dist/index.html"
+        })
+    ],
     devServer: {
-        static: './dist',
-        compress: true,
+        static: "./dist",
         hot: true,
+        compress: true,
         open: true,
         port: 8564,
     },
+    devtool: "inline-source-map",
     module: {
         rules: [
             {
                 test: /\.css$/,
-                use: ["style-loader", "css-loader"],
-            },
-            {
-                test: /\.(png|jpe?g|gif|svg)$/i,
                 use: [
-                    "file-loader", {
-                        loader: "image-webpack-loader",
-                        options: {
-                            bypassOnDebug: true,
-                            disable: true,
-                        },
-                    },
-                ],
+                    "style-loader",
+                    "css-loader"
+                ]
             },
             {
-                test: /\.(jsx?)$/,
+                test: /\.html$/,
+                use: ["html-loader"]
+            },
+            {
+                test: /\.(svg|png|jpe?g|gif)$/,
+                use: {
+                    loader: "file-loader",
+                    options: {
+                        name: "[name].[hash].[ext]",
+                        ouputPath: "imgs"
+                    }
+                }
+            },
+            {
+                test: /\.jsx?$/,
                 exclude: /node_modules/,
                 use: {
-                    loader: "babel-loader",
-                },
-            },
+                    loader: "babel-loader"
+                }
+            }
         ],
     },
-    resolve: {
-        extensions: [".*", ".js", ".jsx"],
-    },
-    plugins: [
-        new HtmlWebpackPlugin({
-            title: 'Dashboard',
-            filename: 'index.html',
-        }),
-    ],
-};
+}

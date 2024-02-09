@@ -1,9 +1,9 @@
-import logo from './holberton-logo.jpg';
+import logo from '../assest/holberton-logo.jpg';
 import './App.css';
-import './utils'
-import React from 'react';
+import '../utils/utils'
 import { Component } from 'react';
-import { getFooterCopy, getFullYear } from './utils';
+import React from 'react';
+import { getFooterCopy, getFullYear } from '../utils/utils';
 
 class App extends Component {
   onLabelClick = (inpuId) => {
