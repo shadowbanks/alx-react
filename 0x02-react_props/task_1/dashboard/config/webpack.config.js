@@ -3,7 +3,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { title } = require("process");
 
 module.exports = {
-    entry: "./src/App/App.js",
+    entry: "./src/index.js",
     plugins: [
         new HtmlWebpackPlugin({
             title: "Dashboard",
