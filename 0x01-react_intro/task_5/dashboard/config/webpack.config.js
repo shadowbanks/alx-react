@@ -38,13 +38,16 @@ module.exports = {
             },
             {
                 test: /\.(svg|png|jpe?g|gif)$/,
-                use: {
-                    loader: "file-loader",
-                    options: {
-                        name: "[name].[hash].[ext]",
-                        ouputPath: "imgs"
-                    }
-                }
+                use: [
+                    "file-loader",
+                    {
+                        loader: "image-webpack-loader",
+                        options: {
+                            name: "[name].[hash].[ext]",
+                            ouputPath: "imgs"
+                        },
+                    },
+                ],
             },
             {
                 test: /\.jsx?$/,
