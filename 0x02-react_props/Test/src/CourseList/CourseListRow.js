@@ -1,28 +1,26 @@
 import React from "react";
-import PropTypes from 'prop-types';
+import propTypes from 'prop-types';
 
 const CourseListRow = ({ isHeader, textFirstCell, textSecondCell}) => {
-    let tableElem;
-    if (isHeader) {
-        if (textSecondCell) {
-            tableElem = 
-                <>
-                <th>{textFirstCell}</th>
-                <th>{textSecondCell}</th>
-                </>
-        } else {
-            tableElem = <th colSpan={2}>{textFirstCell}</th>
-        }
-    } else {
-        tableElem = 
-        <>
-            <td>{textFirstCell}</td>
-            <td>{textSecondCell}</td>
-        </>
-    }
     return(
         <tr>
-            {tableElem}
+            {(isHeader) ? (
+                (textSecondCell) ? (
+                    <>
+                        <th>{textFirstCell}</th>
+                        <th>{textSecondCell}</th>
+                    </>
+                ) : (
+                    <>
+                        <th colSpan={2}>{textFirstCell}</th>
+                    </>
+                )  
+            ) : (
+                <>
+                    <td>{textFirstCell}</td>
+                    <td>{textSecondCell}</td>
+                </>
+            ) }
         </tr>
     )
 }
@@ -35,9 +33,9 @@ CourseListRow.defaultProps = {
 
 // Validate prop type
 CourseListRow.propTypes = {
-    isHeader: PropTypes.bool,
-    textFirstCell: PropTypes.string.isRequired,
-    textSecondCell: PropTypes.string
+    isHeader: propTypes.bool,
+    textFirstCell: propTypes.string.isRequired,
+    textSecondCell: propTypes.oneOfType([propTypes.string, propTypes.number])
 }
 
 export default CourseListRow

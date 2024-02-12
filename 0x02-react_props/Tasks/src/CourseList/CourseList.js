@@ -13,11 +13,11 @@ const CourseList = ({ listCourses }) => {
             </thead>
             <tbody>
                 {(!listCourses.length) ? (
-                    <CourseListRow isHeader={false} textFirstCell="No course available yet" />
+                    <CourseListRow textFirstCell={"No course available yet"} />
                 ) : (
-                    listCourses.map(({ key_id, name, credit }) => {
-                        <CourseList key={key_id} isHeader={false} textFirstCell={name} textSecondCell={credit} />
-                    })
+                    listCourses.map(({ id, name, credit }) => 
+                        <CourseListRow key={id} textFirstCell={name} textSecondCell={credit} />
+                    )
                 )}
             </tbody>
         </table>

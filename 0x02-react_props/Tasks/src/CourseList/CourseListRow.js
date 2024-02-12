@@ -2,27 +2,25 @@ import React from "react";
 import propTypes from 'prop-types';
 
 const CourseListRow = ({ isHeader, textFirstCell, textSecondCell}) => {
-    let tableElem;
-    if (isHeader) {
-        if (textSecondCell) {
-            tableElem = 
-                <>
-                <th>{textFirstCell}</th>
-                <th>{textSecondCell}</th>
-                </>
-        } else {
-            tableElem = <th colSpan={2}>{textFirstCell}</th>
-        }
-    } else {
-        tableElem = 
-        <>
-            <td>{textFirstCell}</td>
-            <td>{textSecondCell}</td>
-        </>
-    }
     return(
         <tr>
-            {tableElem}
+            {(isHeader) ? (
+                (textSecondCell) ? (
+                    <>
+                        <th>{textFirstCell}</th>
+                        <th>{textSecondCell}</th>
+                    </>
+                ) : (
+                    <>
+                        <th colSpan={2}>{textFirstCell}</th>
+                    </>
+                )  
+            ) : (
+                <>
+                    <td>{textFirstCell}</td>
+                    <td>{textSecondCell}</td>
+                </>
+            ) }
         </tr>
     )
 }
