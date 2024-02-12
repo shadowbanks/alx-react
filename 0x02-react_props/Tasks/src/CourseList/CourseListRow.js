@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from 'prop-types';
+import propTypes from 'prop-types';
 
 const CourseListRow = ({ isHeader, textFirstCell, textSecondCell}) => {
     let tableElem;
@@ -35,9 +35,9 @@ CourseListRow.defaultProps = {
 
 // Validate prop type
 CourseListRow.propTypes = {
-    isHeader: PropTypes.bool,
-    textFirstCell: PropTypes.string.isRequired,
-    textSecondCell: PropTypes.string
+    isHeader: propTypes.bool,
+    textFirstCell: propTypes.string.isRequired,
+    textSecondCell: propTypes.oneOfType([propTypes.string, propTypes.number])
 }
 
 export default CourseListRow
