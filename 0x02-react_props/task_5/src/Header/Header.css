@@ -1,0 +1,18 @@
+
+.App-header {
+    border-bottom: 0.2rem solid #e0354b;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1rem;
+    color: #e0354b;
+    font-weight: 800;
+    font-size: 1.5rem;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .App-logo {
+    max-height: calc(0.9 * 25vh);
+  }
+  

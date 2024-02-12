@@ -1,0 +1,14 @@
+
+.Login {
+    padding: 4rem 3rem 0;
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+  .Login label, .Login input{
+    margin-right: .7rem;
+  }
+  .Login .ok {
+    background: none;
+    border-radius: .3rem;
+    border: .03rem solid;
+  }
