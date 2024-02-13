@@ -12,6 +12,21 @@ import { getLatestNotification } from '../utils/utils';
 class App extends Component {
   constructor(props) {
     super(props);
+    this.handleKeyPress = this.handleKeyPress.bind(this);
+  }
+
+  handleKeyPress = (e)  => {
+    if(e.ctrlKey && e.key === 'h') {
+      alert("Logging you out");
+      this.props.logOut();
+    }
+  }
+  componentDidMount(){
+    document.addEventListener('keydown', this.handleKeyPress);
+  }
+
+  componentWillUnmount(){
+    document.removeEventListener('keydown', this.handleKeyPress);
   }
 
   listCourses = [
@@ -49,11 +64,13 @@ class App extends Component {
 // Define propTypes to validate prop type
 App.propTypes = {
   isLoggedIn: PropTypes.bool,
+  logOut: PropTypes.func,
 }
 
 // Set default value
 App.defaultProps = {
   isLoggedIn: false,
+  logOut: () => {},
 }
 
 export default App
