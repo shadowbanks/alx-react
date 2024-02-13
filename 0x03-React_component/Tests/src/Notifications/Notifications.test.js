@@ -1,5 +1,5 @@
 import React from "react";
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import Notifications from "./Notifications";
 
 describe('<Notifications />', () => {
@@ -95,3 +95,20 @@ describe('<Notification /> with {displayDrawer}=true and {listNotifications}=[]'
         expect(first_li.html()).toEqual('<li data-notification-type="default">No new notification for now</li>');
     });
 });
+
+describe('<Notification \> on click', () => {
+    const listNotifications = [
+        { id: 1, type: "default", value: "New course available" }
+      ]
+
+    it('Verify console log when {markAsRead} is passed ', () => {
+        const spy = jest.spyOn(console, 'log');
+        const mockFunc = jest.fn();
+        const wrapper = mount(<Notifications listNotifications={listNotifications} displayDrawer={true} markAsRead={mockFunc} />)
+
+        expect(spy).toHaveBeenCalled();
+        expect(spy).toHaveBeenCalledWith('Notification 1 has been marked as read');
+        spy.mockRestore();
+        wrapper.unmount()
+    })
+})

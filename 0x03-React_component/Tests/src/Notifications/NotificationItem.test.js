@@ -1,5 +1,5 @@
 import React from "react";
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import NotificationItem from "./NotificationItem";
 
 describe('<NotificationItem />', () => {
@@ -20,3 +20,22 @@ describe('<NotificationItem />', () => {
         expect(notificationItem.prop('dangerouslySetInnerHTML')).toEqual(htmlProp);
     })
 });
+
+describe('', () => {
+    it('Verify the onClick work', () => {
+        const mockFunc = jest.fn();
+        const wrapper = mount(<NotificationItem id={1} value={'test'} markAsRead={mockFunc} />);
+
+        expect(mockFunc).toHaveBeenCalled();
+        wrapper.unmount();
+    })
+
+    it('Vertify the ID is correctly passed', () => {
+        const mockFunc = jest.fn();
+        const wrapper = mount(<NotificationItem id={2} value={'test'} markAsRead={mockFunc} />);
+
+        wrapper.find('li').simulate('click');
+        expect(mockFunc).toHaveBeenCalledWith(2);
+        wrapper.unmount();
+    })
+})
