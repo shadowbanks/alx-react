@@ -7,6 +7,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types'
 import CourseList from '../CourseList/CourseList';
 import { getLatestNotification } from '../utils/utils';
+import BodySectionWithMarginBottom from '../BodySection/BodySectionWithMarginBottom';
+import BodySection from '../BodySection/BodySection';
 
 
 class App extends Component {
@@ -49,10 +51,22 @@ class App extends Component {
           <Header />
           <div className='App-body'>
             {this.props.isLoggedIn? (
-              <CourseList listCourses={this.listCourses} />
+              <BodySectionWithMarginBottom title={'Course list'} >
+                <CourseList listCourses={this.listCourses} />
+              </BodySectionWithMarginBottom>
             ) : (
-              <Login />
+              <BodySectionWithMarginBottom title={'Log in to continue'} >
+                <Login />
+              </BodySectionWithMarginBottom>
             )}
+            <BodySection title={'News from the School'} >
+              <p>Ea deserunt eiusmod reprehenderit est.
+                Eiusmod consequat qui adipisicing minim velit incididunt ea mollit.
+                Laboris in eiusmod consectetur veniam Lorem dolore irure ullamco occaecat voluptate ut veniam tempor nisi.
+                Aute in voluptate ullamco officia et veniam consectetur aliqua mollit ex deserunt ea.
+                Commodo aliqua dolor veniam ad.
+              </p>
+            </BodySection>
           </div>
           <Footer />
         </div>

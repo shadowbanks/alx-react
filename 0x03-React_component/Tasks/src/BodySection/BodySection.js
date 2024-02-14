@@ -1,12 +1,15 @@
-import React from "react";
+import React, { Component } from "react";
+import propsTypes from 'prop-types';
 
-const BodySection = ({ title, children }) => {
+
+class BodySection extends Component {
+    render(){
     return(
         <div className='bodySection'>
-            <h2>{title}</h2>
-            {children}
+            <h2>{this.props.title}</h2>
+            {this.props.children}
         </div>
-    )
+    )}
 }
 
 BodySection.propsTypes = {
