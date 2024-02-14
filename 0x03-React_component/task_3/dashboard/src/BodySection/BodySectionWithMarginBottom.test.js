@@ -1,6 +1,6 @@
 import React from "react";
 import BodySectionWithMarginBottom from "./BodySectionWithMarginBottom";
-import { mount, shallow } from "enzyme";
+import { mount } from "enzyme";
 
 describe('<BodySectionWithMarginBottom />', () => {
     it('Verify that <BodySectionWithMarginBottom /> and the component <BodySection /> render correctly', () => {
@@ -13,5 +13,7 @@ describe('<BodySectionWithMarginBottom />', () => {
         expect(wrapper.find('.bodySectionWithMargin').exists()).toBe(true);
         expect(wrapper.find('.bodySectionWithMargin .bodySection').exists()).toBe(true);
         expect(wrapper.find('.bodySectionWithMargin .bodySection h2').text()).toEqual('test title');
+
+        wrapper.unmount()
     });
 });

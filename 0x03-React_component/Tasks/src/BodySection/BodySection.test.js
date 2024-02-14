@@ -1,6 +1,6 @@
 import React from "react";
 import BodySection from "./BodySection";
-import { shallow, mount } from "enzyme";
+import { shallow } from "enzyme";
 
 describe('Section />', () => {
     it('Verify that <BodySection /> renders as expected', () => {
