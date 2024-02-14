@@ -9,4 +9,9 @@ const BodySection = ({ title, children }) => {
     )
 }
 
+BodySection.propsTypes = {
+    title: propsTypes.string.isRequired,
+    children: propsTypes.oneOfType([propsTypes.string, propsTypes.element])
+}
+
 export default BodySection
