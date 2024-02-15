@@ -1,20 +1,23 @@
-import React from "react";
+import React, { PureComponent } from "react";
 import propTypes from 'prop-types';
 
-const NotificationItem = ({ id, type, html, value, markAsRead }) => {
-    if (type && value) {
-        return(
-            <li data-notification-type={type} onClick={markAsRead(id)}>
-                {value}
-            </li>
-        )
+class NotificationItem extends PureComponent {
+    render(){
+        const { id, type, html, value, markAsRead } = this.props;
+        if (this.props.type && value) {
+            return(
+                <li data-notification-type={type} onClick={markAsRead(id)}>
+                    {value}
+                </li>
+            )
+        }
+        else {
+            return(
+                <li data-notification-type='urgent' dangerouslySetInnerHTML={{ __html: html.__html }} onClick={markAsRead(id)} ></li>
+            )
+        }
     }
-    else {
-        return(
-            <li data-notification-type='urgent' dangerouslySetInnerHTML={{ __html: html.__html }} onClick={markAsRead(id)} ></li>
-        )
-    }
-}
+}   
 
 NotificationItem.propTypes = {
     html: propTypes.shape({
@@ -34,4 +37,4 @@ NotificationItem.defaultProps = {
 }
 
 
-export default NotificationItem
+export default NotificationItem;
