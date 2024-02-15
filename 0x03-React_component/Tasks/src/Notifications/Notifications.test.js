@@ -34,6 +34,26 @@ describe('<Notifications />', () => {
         expect(notifications.find('.Notifications').exists()).toBe(false);
     });
 
+    it('Verify no rerender  when props are the same', () => {
+        const wrapper = shallow(<Notifications displayDrawer={true} listNotifications={listNotifications} />);
+        const spy = jest.spyOn(Notifications.prototype, 'shouldComponentUpdate');
+        wrapper.setProps({ listNotifications });
+        expect(spy).toHaveReturnedWith(false);
+    })
+
+    it('Verify rerender when props are different', () => {
+        const wrapper = shallow(<Notifications displayDrawer={true} listNotifications={listNotifications} />);
+        const spy = jest.spyOn(Notifications.prototype, 'shouldComponentUpdate');
+        const newList = [
+            { id: 1, type: "default", value: "New course available" },
+            { id: 2, type: "urgent", value: "New resume available" },
+            { id: 3, type: "urgent", value: "New resume available" },
+            { id: 4, type: "default", value: "New course available" }
+          ]
+        wrapper.setProps({ listNotifications: newList });
+        expect(spy).toHaveReturnedWith(true);
+    })
+
 })
 
 
