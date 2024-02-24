@@ -17,7 +17,7 @@ class NotificationItem extends PureComponent {
             )
         }
     }
-}   
+}
 
 NotificationItem.propTypes = {
     html: propTypes.shape({

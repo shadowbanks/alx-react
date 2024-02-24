@@ -5,6 +5,7 @@ import NotificationItem from './NotificationItem';
 import React, { Component } from 'react';
 import propTypes from 'prop-types';
 import NotificationItemShape from './NotificationItemShape';
+import { StyleSheet, css } from "aphrodite";
 
 class Notifications extends Component {
     constructor(props) {
@@ -24,20 +25,18 @@ class Notifications extends Component {
     
     render() {
     return(
-        <div className='NotificationWrapper'>
-            <div className='menuItem'>
+        <div className={css(style.NotificationWrapper)}>
+            <div className={css(style.menuItem)}>
                 Your Notifications
             </div>
             {this.props.displayDrawer? (
-                <div style={{ position: 'relative' }} className='Notifications'>
-                <button aria-label='Close' onClick={this.handleClick}
-                    style={{ position: 'absolute', top: '0', right: '0', padding: '.3rem',  border: 'none', background: 'none', }}
-                >
+                <div className={css(style.Notifications)}>
+                <button aria-label='Close' onClick={this.handleClick} className={css(style.button)}>
                         <img src={closeIcon} alt='Close Icon' style={{ height: '1.3rem', width: '1.3rem'}} />
                 </button>
                 
-                <p>Here is the list of notifications</p>
-                <ul>
+                <p className={css(style.p)}>Here is the list of notifications</p>
+                <ul className={css(style.ul)}>
                     {(!this.props.listNotifications.length) ? (
                         <NotificationItem value={'No new notification for now'} markAsRead={this.markAsRead} />
                     ) : (
@@ -51,6 +50,44 @@ class Notifications extends Component {
         </div>
     )}
 }
+
+const style = StyleSheet.create({
+    NotificationWrapper: {
+        padding: "0.7rem 1rem 0 0",
+        position: "absolute",
+        right: "0",
+    },
+    
+    Notifications: {
+        border: ".2rem dashed rgb(224, 53, 75)",
+        padding: ".3rem",
+        position: "relative",
+    },
+    
+    menuItem :{
+        textAlign: "right",
+        paddingBottom: "0.2rem",
+    },
+
+    button: {
+        position: 'absolute',
+        top: '0',
+        right: '0',
+        padding: '.3rem',
+        border: 'none',
+        background: 'none',
+    },
+
+    ul: {
+        fontWeight: 'bold',
+        fontSize: '1rem',
+    },
+
+    p: {
+        fontWeight: 'bold',
+        fontSize: '1rem',
+    },
+})
 
 Notifications.propTypes = {
     displayDrawer: propTypes.bool,

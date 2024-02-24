@@ -1,4 +1,3 @@
-import './App.css';
 import Notifications from '../Notifications/Notifications';
 import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
@@ -9,6 +8,7 @@ import CourseList from '../CourseList/CourseList';
 import { getLatestNotification } from '../utils/utils';
 import BodySectionWithMarginBottom from '../BodySection/BodySectionWithMarginBottom';
 import BodySection from '../BodySection/BodySection';
+import { StyleSheet, css } from 'aphrodite';
 
 
 class App extends Component {
@@ -47,7 +47,7 @@ class App extends Component {
     return (
       <>
         <Notifications listNotifications={this.listNotifications} />
-        <div className='App'>
+        <div className={css(style.App)}>
           <Header />
           <div className='App-body'>
             {this.props.isLoggedIn? (
@@ -74,6 +74,18 @@ class App extends Component {
     );
   }
 }
+
+const style = StyleSheet.create({
+  App: {
+    display: "grid",
+    margin: "0",
+    padding: "0",
+    position: "relative",
+    height: "100vh",
+    gridTemplateRows: "25% 67% 8%",
+  }
+  
+})
 
 // Define propTypes to validate prop type
 App.propTypes = {
