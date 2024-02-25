@@ -22,7 +22,6 @@
     "clean-webpack-plugin": "^4.0.0",
     "css-loader": "^6.10.0",
     "enzyme": "^3.11.0",
-    "enzyme-adapter-react-16": "^1.15.7",
     "file-loader": "^6.2.0",
     "html-loader": "^5.0.0",
     "html-webpack-plugin": "^5.6.0",
@@ -31,7 +30,6 @@
     "inline-source-map": "^0.6.2",
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
-    "prop-types": "^15.8.1",
     "style-loader": "^3.3.4",
     "webpack": "^5.90.1",
     "webpack-cli": "^5.1.4",
@@ -39,6 +37,9 @@
     "webpack-merge": "^5.10.0"
   },
   "dependencies": {
-    "aphrodite": "^2.4.0"
+    "aphrodite": "^2.4.0",
+    "prop-types": "^15.8.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   }
 }
