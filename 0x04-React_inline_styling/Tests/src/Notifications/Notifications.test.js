@@ -16,7 +16,8 @@ describe('<Notifications />', () => {
     it('verify that <NotificationItems /> returns the correct html', () => {
         const notifications = shallow(<Notifications displayDrawer={true} listNotifications={listNotifications} />);
         const first_li = notifications.find('ul NotificationItem').first();
-        expect(first_li.html()).toEqual('<li data-notification-type="default">New course available</li>');
+        expect(first_li.html()).toMatch(/<li data-notification-type="default"(?:\s+class="[a-zA-Z0-9-_ ]+")?>New course available<\/li>/);
+        // expect(first_li.html()).toEqual('<li data-notification-type="default">New course available</li>');
     });
 
     it('verify that <Notifications /> renders three list items when list of notifications are passed', () => {
@@ -112,7 +113,8 @@ describe('<Notification /> with {displayDrawer}=true and {listNotifications}=[]'
     
     it('verify that <NotificationItems /> returns the correct html', () => {
         const first_li = wrapper.find('ul NotificationItem').first();
-        expect(first_li.html()).toEqual('<li data-notification-type="default">No new notification for now</li>');
+        expect(first_li.html()).toMatch(/<li data-notification-type="default"(?:\s+class="[a-zA-Z0-9-_ ]+")?>No new notification for now<\/li>/);
+        // expect(first_li.html()).toEqual('<li data-notification-type="default">No new notification for now</li>');
     });
 });
 

@@ -1,6 +1,5 @@
 import closeIcon from '../assest/close-icon.png';
 import { getLatestNotification } from '../utils/utils';
-import './Notifications.css';
 import NotificationItem from './NotificationItem';
 import React, { Component } from 'react';
 import propTypes from 'prop-types';
@@ -25,12 +24,12 @@ class Notifications extends Component {
     
     render() {
     return(
-        <div className={css(style.NotificationWrapper)}>
-            <div className={css(style.menuItem)}>
+        <div className={`NotificationWrapper ${css(style.NotificationWrapper)}`}>
+            <div className={`menuItem ${css(style.menuItem)}`}>
                 Your Notifications
             </div>
             {this.props.displayDrawer? (
-                <div className={css(style.Notifications)}>
+                <div className={`Notifications ${css(style.Notifications)}`}>
                 <button aria-label='Close' onClick={this.handleClick} className={css(style.button)}>
                         <img src={closeIcon} alt='Close Icon' style={{ height: '1.3rem', width: '1.3rem'}} />
                 </button>

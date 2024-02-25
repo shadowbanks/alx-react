@@ -1,5 +1,6 @@
 import React from "react";
 import propTypes from 'prop-types';
+import { StyleSheet, css } from "aphrodite";
 
 const CourseListRow = ({ isHeader, textFirstCell, textSecondCell}) => {
     const bgdColor = {
@@ -10,12 +11,12 @@ const CourseListRow = ({ isHeader, textFirstCell, textSecondCell}) => {
             {(isHeader) ? (
                 (textSecondCell) ? (
                     <>
-                        <th>{textFirstCell}</th>
-                        <th>{textSecondCell}</th>
+                        <th className={css(style.table_th)}>{textFirstCell}</th>
+                        <th className={css(style.table_th)}>{textSecondCell}</th>
                     </>
                 ) : (
                     <>
-                        <th colSpan={2}>{textFirstCell}</th>
+                        <th className={css(style.table_th, style.thead_th_colSpan)} colSpan={2}>{textFirstCell}</th>
                     </>
                 )  
             ) : (
@@ -27,6 +28,17 @@ const CourseListRow = ({ isHeader, textFirstCell, textSecondCell}) => {
         </tr>
     )
 }
+
+const style = StyleSheet.create({
+    table_th: {
+        borderBottom: "2px solid rgba(0, 0, 0, 0.2)",
+        textAlign: "left",
+    },
+    
+    thead_th_colSpan: {
+        textAlign: "center",
+    }
+})
 
 // Default values
 CourseListRow.defaultProps = {

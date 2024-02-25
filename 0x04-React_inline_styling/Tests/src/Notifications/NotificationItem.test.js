@@ -1,6 +1,7 @@
 import React from "react";
 import { shallow, mount } from 'enzyme';
 import NotificationItem from "./NotificationItem";
+import { StyleSheet, css } from "aphrodite";
 
 describe('<NotificationItem />', () => {
     it('renders <NotificatioItem /> without crashing', () => {
