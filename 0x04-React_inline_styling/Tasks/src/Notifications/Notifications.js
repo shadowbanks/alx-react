@@ -9,7 +9,7 @@ import { StyleSheet, css } from "aphrodite";
 
 class Notifications extends Component {
     constructor(props) {
-        super(props)
+        super(props);
     }
     handleClick = () => {
         console.log('Close button has been clicked');
@@ -51,12 +51,37 @@ class Notifications extends Component {
     )}
 }
 
+const opacityChange = {
+    'from': {
+        opacity: '0.5',
+    },
+    'to': {
+        opacity: '1',
+    }
+}
+
+const elementBounce = {
+    '0%': {
+        transform: 'translateY(0)',
+    },
+    '25%': {
+        transform: 'translateY(5px)',
+    },
+    '50%': {
+        transform: 'translateY(-5px)',
+    },
+    '75%': {
+        transform: 'translateY(5px)',
+    },
+}
+
 const style = StyleSheet.create({
     NotificationWrapperHidden: {
         position: "absolute",
         padding: "0.7rem 1rem 0 0",
         right: "0",
         zIndex: "1",
+        float: "right",
     },
 
     NotificationWrapperShow: {
@@ -82,13 +107,19 @@ const style = StyleSheet.create({
     },
     
     hideDisplay: {
-        '@media (max-width: 900px)': {
-            display: "none",
-        },
+        display: "none",
     },
+
     menuItem :{
         textAlign: "right",
         paddingBottom: "0.2rem",
+        backgroundColor: "#fff8f8",
+        cursor: "pointer",
+        ':hover': {
+            animationName: [elementBounce, opacityChange],
+            animationDuration: ".5s, 1s",
+            animationIterationCount: '3',
+        },
     },
 
     button: {
