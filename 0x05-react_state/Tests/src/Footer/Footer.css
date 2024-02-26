@@ -1,0 +1,11 @@
+
+.Footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-style: italic;
+    font-weight: 550;
+    font-size: 1.2rem;
+    border-top: 0.2rem solid #e0354b;
+  }
+  
