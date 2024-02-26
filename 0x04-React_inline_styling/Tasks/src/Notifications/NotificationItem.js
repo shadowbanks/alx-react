@@ -8,8 +8,12 @@ class NotificationItem extends PureComponent {
         
         const style = StyleSheet.create({
             li: {
-                color: type === 'default' ? "blue" : "red"
+                color: type === 'default' ? "blue" : "red",
+            '@media (max-width: 900px)': {
+                padding: "10px 8px",
+                borderBottom: "0.15rem solid black",
             },
+        },
         });
         
         if (this.props.type && value) {

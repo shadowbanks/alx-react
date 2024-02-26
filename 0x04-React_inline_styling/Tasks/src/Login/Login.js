@@ -12,12 +12,16 @@ class Login extends Component {
     render() {
         return (
             <div className={css(style.Login)}>
-            <p>Login to access the full dashboard</p>
-            <label htmlFor='email' className={css(style.marginRight)} onClick={() => this.onLabelClick('email')}>Email:</label>
-            <input className={css(style.marginRight)} type='email' name='email' />
-            <label htmlFor='password' className={css(style.marginRight)} onClick={() => this.onLabelClick('password')}>Password:</label>
-            <input className={css(style.marginRight)} type='password' name='password' />
-            <input className={css(style.marginRight, style.ok)} type='button' name='ok_button' value='OK' />
+              <p>Login to access the full dashboard</p>
+              <fieldset className={css(style.fieldset)}>
+                <label htmlFor='email' className={css(style.label)} onClick={() => this.onLabelClick('email')}>Email:</label>
+                <input className={css(style.input)} type='email' name='email' />
+              </fieldset>
+              <fieldset className={css(style.fieldset)}>
+                <label htmlFor='password' className={css(style.label)} onClick={() => this.onLabelClick('password')}>Password:</label>
+                <input className={css(style.input)} type='password' name='password' />
+              </fieldset>
+              <input className={css(style.ok)} type='button' name='ok_button' value='OK' />
             </div>
         )
     }
@@ -25,19 +29,39 @@ class Login extends Component {
 
 const style = StyleSheet.create({
   Login: {
-    padding: "4rem 3rem 0",
     fontSize: "1.2rem",
-    fontWeight: "bold",
+    '@media (max-width: 950px)': {
+  }
   },
 
-  marginRight: {
-    marginRight: ".7rem",
+  label: {
+    '@media (max-width: 950px)': {
+      display: 'inline',
+      marginRight: ".7rem",
+    },
+  },
+
+  input: {
+    '@media (max-width: 950px)': {
+      border: "0.05",
+    },
+  },
+  fieldset: {
+    border: "none",
+    padding: "0",
+    '@media (max-width: 950px)': {
+      display: "block",
+    },
   },
 
   ok: {
     background: "none",
     borderRadius: ".3rem",
     border: ".03rem solid",
+    '@media (max-width: 950px)': {
+      borderRadius: "0",
+      border: "0.1rem solid orange",
+    },
   }
 
 })

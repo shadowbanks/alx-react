@@ -49,7 +49,7 @@ class App extends Component {
         <Notifications listNotifications={this.listNotifications} />
         <div className={css(style.App)}>
           <Header />
-          <div className='App-body'>
+          <div className={`App-body ${css(style.AppBody)}`}>
             {this.props.isLoggedIn? (
               <BodySectionWithMarginBottom title={'Course list'} >
                 <CourseList listCourses={this.listCourses} />
@@ -81,10 +81,14 @@ const style = StyleSheet.create({
     margin: "0",
     padding: "0",
     position: "relative",
-    height: "100vh",
+    minHeight: "100vh",
     gridTemplateRows: "25% 67% 8%",
+  },
+  AppBody: {
+    '@media (max-width: 900px)': {
+      paddingTop: "3rem",
+    },
   }
-  
 })
 
 // Define propTypes to validate prop type

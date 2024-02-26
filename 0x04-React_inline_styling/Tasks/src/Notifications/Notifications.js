@@ -25,8 +25,8 @@ class Notifications extends Component {
     
     render() {
     return(
-        <div className={`NotificationWrapper ${css(style.NotificationWrapper)}`}>
-            <div className={`menuItem ${css(style.menuItem)}`}>
+        <div className={`NotificationWrapper ${this.props.displayDrawer? css(style.NotificationWrapperShow) : css(style.NotificationWrapperHidden)}`}>
+            <div className={`menuItem ${this.props.displayDrawer? css(style.menuItem, style.hideDisplay) : css(style.menuItem)}`}>
                 Your Notifications
             </div>
             {this.props.displayDrawer? (
@@ -52,18 +52,40 @@ class Notifications extends Component {
 }
 
 const style = StyleSheet.create({
-    NotificationWrapper: {
-        padding: "0.7rem 1rem 0 0",
+    NotificationWrapperHidden: {
         position: "absolute",
+        padding: "0.7rem 1rem 0 0",
         right: "0",
+        zIndex: "1",
+    },
+
+    NotificationWrapperShow: {
+        position: "absolute",
+        padding: "0.7rem 1rem 0 0",
+        right: "0",
+        zIndex: "1",
+        '@media (max-width: 900px)': {
+            width: "100%",
+            height: "100%",
+            backgroundColor: "white",
+            padding: "0",
+        },
     },
     
     Notifications: {
         border: ".2rem dashed rgb(224, 53, 75)",
         padding: ".3rem",
         position: "relative",
+        '@media (max-width: 900px)': {
+            border: "none",
+        },
     },
     
+    hideDisplay: {
+        '@media (max-width: 900px)': {
+            display: "none",
+        },
+    },
     menuItem :{
         textAlign: "right",
         paddingBottom: "0.2rem",
@@ -81,11 +103,19 @@ const style = StyleSheet.create({
     ul: {
         fontWeight: 'bold',
         fontSize: '1rem',
+        '@media (max-width: 900px)': {
+            listStyle: "none",
+            fontSize: "20px",
+            paddingLeft: "0",
+        },
     },
 
     p: {
         fontWeight: 'bold',
         fontSize: '1rem',
+        '@media (max-width: 900px)': {
+            fontSize: '1.4rem',
+        },
     },
 })
 
