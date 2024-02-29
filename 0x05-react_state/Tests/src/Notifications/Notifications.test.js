@@ -132,5 +132,34 @@ describe('<Notification \> on click', () => {
         expect(spy).toHaveBeenCalledWith('Notification 1 has been marked as read');
         spy.mockRestore();
         wrapper.unmount()
-    })
-})
+    });
+
+    it('verifies that clicking on menu item calls "handleDisplayDrawer"', () => {
+        const mockHandleDisplayDrawer = jest.fn();
+        const mockHandleHideDrawer = jest.fn();
+        const wrapper = mount(
+                                <Notifications
+                                listNotifications={listNotifications}
+                                handleDisplayDrawer={mockHandleDisplayDrawer}
+                                handleHideDrawer={mockHandleHideDrawer} />
+                            );
+        wrapper.find('.menuItem').simulate('click');
+        expect(mockHandleDisplayDrawer).toHaveBeenCalled();
+        wrapper.unmount()
+    });
+
+    it('verifies that clicking on close button calls "handleHideDrawer"', () => {
+        const mockHandleDisplayDrawer = jest.fn();
+        const mockHandleHideDrawer = jest.fn();
+        const wrapper = mount(
+                                <Notifications
+                                listNotifications={listNotifications}
+                                displayDrawer={true}
+                                handleDisplayDrawer={mockHandleDisplayDrawer}
+                                handleHideDrawer={mockHandleHideDrawer} />
+                            );
+        wrapper.find('button').simulate('click');
+        expect(mockHandleHideDrawer).toHaveBeenCalled();
+        wrapper.unmount()
+    });
+});

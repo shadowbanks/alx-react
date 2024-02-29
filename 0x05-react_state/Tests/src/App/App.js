@@ -14,7 +14,9 @@ import { StyleSheet, css } from 'aphrodite';
 class App extends Component {
   constructor(props) {
     super(props);
+    this.state = {displayDrawer: false};
     this.handleKeyPress = this.handleKeyPress.bind(this);
+    this.handleDisplayDrawer = this.handleDisplayDrawer.bind(this);
   }
 
   handleKeyPress = (e)  => {
@@ -22,6 +24,14 @@ class App extends Component {
       alert("Logging you out");
       this.props.logOut();
     }
+  }
+
+  handleDisplayDrawer = (e) => {
+    this.setState({displayDrawer: true})
+  }
+
+  handleHideDrawer = (e) => {
+    this.setState({displayDrawer: false})
   }
   componentDidMount(){
     document.addEventListener('keydown', this.handleKeyPress);
@@ -46,10 +56,14 @@ class App extends Component {
   render() {
     return (
       <>
-        <Notifications listNotifications={this.listNotifications} />
+        <Notifications
+          listNotifications={this.listNotifications}
+          displayDrawer={this.state.displayDrawer}
+          handleDisplayDrawer={this.handleDisplayDrawer}
+          handleHideDrawer={this.handleHideDrawer} />
         <div className={css(style.App)}>
           <Header />
-          <div className='App-body'>
+          <div className={`App-body ${css(style.AppBody)}`}>
             {this.props.isLoggedIn? (
               <BodySectionWithMarginBottom title={'Course list'} >
                 <CourseList listCourses={this.listCourses} />
@@ -81,10 +95,14 @@ const style = StyleSheet.create({
     margin: "0",
     padding: "0",
     position: "relative",
-    height: "100vh",
+    minHeight: "100vh",
     gridTemplateRows: "25% 67% 8%",
+  },
+  AppBody: {
+    '@media (max-width: 900px)': {
+      paddingTop: "3rem",
+    },
   }
-  
 })
 
 // Define propTypes to validate prop type

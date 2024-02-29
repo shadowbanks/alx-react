@@ -6,6 +6,7 @@ import { StyleSheetTestUtils } from 'aphrodite';
 
 // Suppress style injection during testing
 StyleSheetTestUtils.suppressStyleInjection();
+
 describe('<App />', () => {
     it('renders <App /> without crashing', () => {
         const app = shallow(<App />);
@@ -65,4 +66,26 @@ describe('Event listener on <App />' ,() => {
         spy.mockRestore();
         wrapper.unmount();
     });
-})
+});
+
+//Test state
+describe('<App /> with state', () => {
+    it('verifies default state of displayDrawer is false', () => {
+        const wrapper = shallow(<App />);
+        expect(wrapper.state('displayDrawer')).toBe(false);
+    });
+    
+    it('verifies state is updated to true after calling handleDisplayDrawer', () => {
+        const wrapper = shallow(<App />);
+        wrapper.instance().handleDisplayDrawer();
+        expect(wrapper.state('displayDrawer')).toBe(true);
+    });
+    
+    it('verifies state is updated to false after calling handleHideDrawer', () => {
+        const wrapper = shallow(<App />);
+        wrapper.setState({ displayDrawer: true });
+        wrapper.instance().handleHideDrawer();
+        expect(wrapper.state('displayDrawer')).toBe(false);
+    });
+
+});
