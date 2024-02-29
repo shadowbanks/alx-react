@@ -1,7 +1,11 @@
 import React from 'react';
 import  { shallow, mount } from 'enzyme';
 import App from './App'
+import { StyleSheetTestUtils } from 'aphrodite';
 
+
+// Suppress style injection during testing
+StyleSheetTestUtils.suppressStyleInjection();
 describe('<App />', () => {
     it('renders <App /> without crashing', () => {
         const app = shallow(<App />);
