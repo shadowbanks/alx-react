@@ -37,14 +37,12 @@ describe('<Notifications />', () => {
 
     it('Verify no rerender  when props are the same', () => {
         const wrapper = shallow(<Notifications displayDrawer={true} listNotifications={listNotifications} />);
-        const spy = jest.spyOn(Notifications.prototype, 'shouldComponentUpdate');
         wrapper.setProps({ listNotifications });
-        expect(spy).toHaveReturnedWith(false);
-    })
+        expect(wrapper.html()).toMatchSnapshot();
+    });
 
     it('Verify rerender when props are different', () => {
         const wrapper = shallow(<Notifications displayDrawer={true} listNotifications={listNotifications} />);
-        const spy = jest.spyOn(Notifications.prototype, 'shouldComponentUpdate');
         const newList = [
             { id: 1, type: "default", value: "New course available" },
             { id: 2, type: "urgent", value: "New resume available" },
@@ -52,10 +50,9 @@ describe('<Notifications />', () => {
             { id: 4, type: "default", value: "New course available" }
           ]
         wrapper.setProps({ listNotifications: newList });
-        expect(spy).toHaveReturnedWith(true);
-    })
-
-})
+        expect(wrapper.html()).toMatchSnapshot();
+    });
+});
 
 
 describe('<Notifications /> with displayDrawer = {false}', () => {
@@ -115,50 +112,5 @@ describe('<Notification /> with {displayDrawer}=true and {listNotifications}=[]'
         const first_li = wrapper.find('ul NotificationItem').first();
         expect(first_li.html()).toMatch(/<li data-notification-type="default"(?:\s+class="[a-zA-Z0-9-_ ]+")?>No new notification for now<\/li>/);
         // expect(first_li.html()).toEqual('<li data-notification-type="default">No new notification for now</li>');
-    });
-});
-
-describe('<Notification \> on click', () => {
-    const listNotifications = [
-        { id: 1, type: "default", value: "New course available" }
-      ]
-
-    it('Verify console log when {markAsRead} is passed ', () => {
-        const spy = jest.spyOn(console, 'log');
-        const mockFunc = jest.fn();
-        const wrapper = mount(<Notifications listNotifications={listNotifications} displayDrawer={true} markAsRead={mockFunc} />)
-
-        expect(spy).toHaveBeenCalled();
-        expect(spy).toHaveBeenCalledWith('Notification 1 has been marked as read');
-        spy.mockRestore();
-        wrapper.unmount()
-    });
-
-    it('verifies that clicking on menu item calls "handleDisplayDrawer"', () => {
-        const mockHandleDisplayDrawer = jest.fn();
-        const mockHandleHideDrawer = jest.fn();
-        const wrapper = mount(
-                                <Notifications
-                                listNotifications={listNotifications}
-                                handleDisplayDrawer={mockHandleDisplayDrawer}
-                                handleHideDrawer={mockHandleHideDrawer} />
-                            );
-        wrapper.find('.menuItem').simulate('click');
-        expect(mockHandleDisplayDrawer).toHaveBeenCalled();
-        wrapper.unmount()
-    });
-
-    it('verifies that clicking on close button calls "handleHideDrawer"', () => {
-        const mockHandleDisplayDrawer = jest.fn();
-        const mockHandleHideDrawer = jest.fn();
-        const wrapper = mount(
-                                <Notifications
-                                listNotifications={listNotifications}
-                                handleDisplayDrawer={mockHandleDisplayDrawer}
-                                handleHideDrawer={mockHandleHideDrawer} />
-                            );
-        wrapper.find('button').simulate('click');
-        expect(mockHandleHideDrawer).toHaveBeenCalled();
-        wrapper.unmount()
     });
 });

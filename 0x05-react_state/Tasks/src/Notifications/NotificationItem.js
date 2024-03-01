@@ -18,7 +18,7 @@ class NotificationItem extends PureComponent {
         
         if (this.props.type && value) {
             return(
-                <li data-notification-type={type} className={css(style.li)} onClick={markAsRead(id)}>
+                <li data-notification-type={type} className={css(style.li)} onClick={this(id)}>.props
                     {value}
                 </li>
             )
@@ -41,12 +41,12 @@ NotificationItem.propTypes = {
 
     value: propTypes.string,
 
-    markAsRead: propTypes.func
+    markNotificationAsRead: propTypes.func
 }
 
 NotificationItem.defaultProps = {
     type: 'default',
-    markAsRead: () => {}
+    markNotificationAsRead: () => {}
 }
 
 

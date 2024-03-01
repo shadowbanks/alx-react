@@ -97,6 +97,18 @@ describe('<App /> with state', () => {
         expect(wrapper.state('displayDrawer')).toBe(false);
     });
 
+    it('verifies listNotifications prop works as expected', () => {
+        const wrapper = mount(<App />);
+        wrapper.setState({
+            listNotifications : [
+                { id: 1, type: "default", value: "New course available" },
+                { id: 2, type: "urgent", value: "New resume available" },
+            ]
+        });
+        wrapper.instance().markNotificationAsRead(1);
+        expect(wrapper.state('listNotifications')).toHaveLength(1);
+    });
+
 });
 
 describe('verify login and logout functionality', () => {

@@ -18,11 +18,17 @@ class App extends Component {
     this.state = {
       displayDrawer: false,
       user: user,
-      logOut: this.logOut
+      logOut: this.logOut,
+      listNotifications : [
+        { id: 1, type: "default", value: "New course available" },
+        { id: 2, type: "urgent", value: "New resume available" },
+        { id: 3, type: "urgent", html: {__html: getLatestNotification()} }
+      ],
     };
     this.handleKeyPress = this.handleKeyPress.bind(this);
     this.handleDisplayDrawer = this.handleDisplayDrawer.bind(this);
     this.logIn = this.logIn.bind(this);
+    this.markNotificationAsRead = this.markNotificationAsRead.bind(this);
   }
 
   logIn = (email, password) => {
@@ -53,6 +59,12 @@ class App extends Component {
   handleHideDrawer = (e) => {
     this.setState({displayDrawer: false})
   };
+  markNotificationAsRead = (id) => {
+    console.log(`id = ${id}`);
+    this.setState(prevState => ({
+      listNotifications: prevState.listNotifications.filter(item => item.id !== id),
+    }));
+  }
   componentDidMount(){
     document.addEventListener('keydown', this.handleKeyPress);
   };
@@ -67,11 +79,7 @@ class App extends Component {
     { id: 3, name: 'React', credit: 40 }
   ];
 
-  listNotifications = [
-    { id: 1, type: "default", value: "New course available" },
-    { id: 2, type: "urgent", value: "New resume available" },
-    { id: 3, type: "urgent", html: {__html: getLatestNotification()} }
-  ];
+  
 
   render() {
     return (
@@ -81,10 +89,11 @@ class App extends Component {
         logOut: this.state.logOut,
       }}>
           <Notifications
-            listNotifications={this.listNotifications}
+            listNotifications={this.state.listNotifications}
             displayDrawer={this.state.displayDrawer}
             handleDisplayDrawer={this.handleDisplayDrawer}
-            handleHideDrawer={this.handleHideDrawer} />
+            handleHideDrawer={this.handleHideDrawer}
+            markNotificationAsRead={this.markNotificationAsRead} />
           <div className={css(style.App)}>
             <Header />
             <div className={`App-body ${css(style.AppBody)}`}>
