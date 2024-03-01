@@ -6,7 +6,6 @@ class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
-                    isLoggedIn: false,
                     email: '',
                     password: '',
                     enableSubmit: false,
@@ -14,7 +13,6 @@ class Login extends Component {
     this.handleLoginSubmit = this.handleLoginSubmit.bind(this);
     this.handleChangeEmail = this.handleChangeEmail.bind(this);
     this.handleChangePassword = this.handleChangePassword.bind(this);
-    this.onLabelClick = this.onLabelClick.bind(this);
   }
     onLabelClick = (inpuId) => {
       const inputElement = document.getElementById(inpuId);
@@ -24,7 +22,7 @@ class Login extends Component {
     };
 
     handleLoginSubmit = (e) => {
-      this.setState({isLoggedIn: true});
+      this.props.logIn(this.state.email, this.state.password);
     };
 
     handleChangeEmail = (e) => {
@@ -59,19 +57,6 @@ class Login extends Component {
         )
     }
 }
-
-{/* <div className={css(style.Login)}>
-<p>Login to access the full dashboard</p>
-<fieldset className={css(style.fieldset)}>
-  <label htmlFor='email' className={css(style.label)} onClick={() => this.onLabelClick('email')}>Email:</label>
-  <input className={css(style.input)} type='email' name='email' />
-</fieldset>
-<fieldset className={css(style.fieldset)}>
-  <label htmlFor='password' className={css(style.label)} onClick={() => this.onLabelClick('password')}>Password:</label>
-  <input className={css(style.input)} type='password' name='password' />
-</fieldset>
-<input className={css(style.submit)} type='button' name='submit_button' value='submit' />
-</div> */}
 
 const style = StyleSheet.create({
   Login: {
