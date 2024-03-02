@@ -60,8 +60,9 @@ class App extends Component {
     this.setState({displayDrawer: false})
   };
   markNotificationAsRead = (id) => {
+    console.log(`id = ${id}`);
     this.setState(prevState => ({
-      listNotifications: prevState.listNotifications.filter(item => item.id !== id)
+      listNotifications: prevState.listNotifications.filter(item => item.id !== id),
     }));
   }
   componentDidMount(){
@@ -124,14 +125,13 @@ class App extends Component {
 
 const style = StyleSheet.create({
   App: {
-    display: "grid",
     margin: "0",
     padding: "0",
     position: "relative",
     minHeight: "100vh",
-    gridTemplateRows: "25% 67% 8%",
   },
   AppBody: {
+    minHeight: "60vh",
     '@media (max-width: 900px)': {
       paddingTop: "3rem",
     },

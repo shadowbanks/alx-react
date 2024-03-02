@@ -31,8 +31,9 @@ class Notifications extends PureComponent{
                 
                 <p className={css(style.p)}>Here is the list of notifications</p>
                 <ul className={css(style.ul)}>
+                    {/* {console.log(this.props.listNotifications)} */}
                     {(!this.props.listNotifications.length) ? (
-                        <NotificationItem value={'No new notification for now'} markAsRead={this.props.markNotificationAsRead} />
+                        <NotificationItem value={'No new notification for now'} />
                     ) : (
                         this.props.listNotifications.map(({ id, html, type, value }) => 
                             <NotificationItem key={id} id={id} type={type} html={html} value={value} markAsRead={this.props.markNotificationAsRead} />
@@ -76,6 +77,7 @@ const style = StyleSheet.create({
         right: "0",
         zIndex: "1",
         float: "right",
+        height: "4vh",
     },
 
     NotificationWrapperShow: {
@@ -92,7 +94,7 @@ const style = StyleSheet.create({
     },
     
     Notifications: {
-        border: ".2rem dashed rgb(224, 53, 75)",
+        border: ".15rem dashed rgb(224, 53, 75)",
         padding: ".3rem",
         position: "relative",
         '@media (max-width: 900px)': {

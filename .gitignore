@@ -8,3 +8,4 @@ node_modules
 0x01-react_intro/task_5/dashboard/config/webpack.dev.js
 0x01-react_intro/task_5/dashboard/config/webpack.prod.js
 0x02-react_props/task_1/temp
+0x05-react_state/Tests/src/Notifications/__snapshots__/Notifications.test.js.snap

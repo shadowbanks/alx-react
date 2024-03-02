@@ -37,19 +37,18 @@ describe('<Notifications />', () => {
 
     it('Verify no rerender  when props are the same', () => {
         const wrapper = shallow(<Notifications displayDrawer={true} listNotifications={listNotifications} />);
-        wrapper.setProps({ listNotifications });
         expect(wrapper.html()).toMatchSnapshot();
     });
 
     it('Verify rerender when props are different', () => {
         const wrapper = shallow(<Notifications displayDrawer={true} listNotifications={listNotifications} />);
-        const newList = [
+        wrapper.setState({
+            listNotifications: [
             { id: 1, type: "default", value: "New course available" },
             { id: 2, type: "urgent", value: "New resume available" },
             { id: 3, type: "urgent", value: "New resume available" },
             { id: 4, type: "default", value: "New course available" }
-          ]
-        wrapper.setProps({ listNotifications: newList });
+          ]});
         expect(wrapper.html()).toMatchSnapshot();
     });
 });

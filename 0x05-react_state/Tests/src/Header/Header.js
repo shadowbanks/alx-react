@@ -18,7 +18,8 @@ const Header = () => {
                 <a href="#" onClick={logOut}>(logout)</a>
               </em>
             </section>
-          )}
+          )
+          }
         </>
     )
 }
@@ -36,6 +37,7 @@ AppHeader: {
     fontSize: "1.5rem",
     margin: "0",
     padding: "0",
+    height: "25vh",
   },
   
   AppLogo: {
