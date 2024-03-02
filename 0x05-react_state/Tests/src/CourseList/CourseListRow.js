@@ -1,13 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import propTypes from 'prop-types';
 import { StyleSheet, css } from "aphrodite";
 
 const CourseListRow = ({ isHeader, textFirstCell, textSecondCell}) => {
-    const bgdColor = {
-        backgroudColor : isHeader ? '#deb5b545' : '#f5f5f5ab',
+    const [checked, setChecked] = useState(false);
+
+    const handleCheck = () => {
+        setChecked(!checked);
     }
     return(
-        <tr style={{backgroundColor: bgdColor.backgroudColor}}>
+        <tr className={isHeader ? css(style.theadBgColor) :
+            checked ? css(style.rowChecked) :
+                css(style.tbodyBgColor)}
+        >
             {(isHeader) ? (
                 (textSecondCell) ? (
                     <>
@@ -21,7 +26,7 @@ const CourseListRow = ({ isHeader, textFirstCell, textSecondCell}) => {
                 )  
             ) : (
                 <>
-                    <td>{textFirstCell}</td>
+                    <td><input type="checkbox" checked={checked} onChange={handleCheck} ></input>{textFirstCell}</td>
                     <td>{textSecondCell}</td>
                 </>
             ) }
@@ -37,8 +42,20 @@ const style = StyleSheet.create({
     
     thead_th_colSpan: {
         textAlign: "center",
-    }
-})
+    },
+
+    rowChecked: {
+        backgroundColor: "#e6e4e4",
+    },
+
+    theadBgColor: {
+        backgroundColor: "#deb5b545",
+    },
+
+    tbodyBgColor: {
+        backgroundColor: "#f5f5f5ab",
+    },
+});
 
 // Default values
 CourseListRow.defaultProps = {
