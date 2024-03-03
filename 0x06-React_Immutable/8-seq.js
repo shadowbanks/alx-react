@@ -1,6 +1,6 @@
 import { Seq } from "immutable";
 
-const temp = (object) => {
+const printBestStudents = (object) => {
   const format = (str) => str.charAt(0).toUpperCase() + str.slice(1);
   const result = Seq(object)
     .filter((x) => x.score > 69)
@@ -12,3 +12,5 @@ const temp = (object) => {
     .toJS();
   console.log(result);
 };
+
+export default printBestStudents;
