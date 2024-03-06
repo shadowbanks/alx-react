@@ -45,7 +45,7 @@ describe('Test normalizer data', () => {
     expect(normalizedData.result).toEqual(expectedResult);
   });
 
-  it('verify that normalized data has correc users', () => {
+  it('verify that normalized data has correct users', () => {
     const expectedResult = {
       age: 25,
       email: "poole.sanders@holberton.nz",
@@ -64,7 +64,7 @@ describe('Test normalizer data', () => {
       type: "default",
       value: "Cursus risus at ultrices mi."
     };
-    console.log(normalizedData.entities);
+    // console.log(normalizedData);
     expect(normalizedData.entities.messages['efb6c485-00f7-4fdf-97cc-5e12d14d6c41']).toEqual(expectedResult);
   });
 
