@@ -1,4 +1,5 @@
-import  { LOGIN, LOGOUT, DISPLAY_NOTIFICATION_DRAWER, HIDE_NOTIFICATION_DRAWER } from './uiActionTypes';
+import  { LOGIN, LOGOUT, DISPLAY_NOTIFICATION_DRAWER, HIDE_NOTIFICATION_DRAWER, LOGIN_SUCCESS, LOGIN_FAILURE } from './uiActionTypes';
+import fetch from 'node-fetch';
 
 export const login = (email, password) => {
     return {
@@ -26,3 +27,22 @@ export const hideNotificationDrawer = () => {
 };
 
 export const boundHideNotificationDrawer = () => hideNotificationDrawer();
+
+export const loginSuccess = () => {
+    return {type: LOGIN_SUCCESS};
+};
+
+export const loginFailure = () => {
+    return {type: LOGIN_FAILURE};
+}
+
+export const loginRequest = (email, password) => {
+    return (dispatch) => {
+        boundLogin(email, password);
+
+        return fetch('/login-success.json')
+            .then((response) => response.json())
+            .then(() => dispatch(loginSuccess()))
+            .catch(() => dispatch(loginFailure()))
+    };
+};
