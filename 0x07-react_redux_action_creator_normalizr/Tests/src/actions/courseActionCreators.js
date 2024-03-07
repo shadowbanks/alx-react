@@ -1,17 +1,19 @@
 import { SELECT_COURSE, UNSELECT_COURSE } from "./courseActionTypes";
 
-const selectCourse = (index) => {
+export const selectCourse = (index) => {
     return {
         type: SELECT_COURSE,
         index: index,
     };
 };
 
-const unSelectCourse = (index) => {
+export const boundSelectCourse = (index) => selectCourse(index);
+
+export const unSelectCourse = (index) => {
     return {
         type: UNSELECT_COURSE,
         index: index,
     };
 };
 
-export {unSelectCourse, selectCourse};
+export const boundUnSelectCourse = (index) => unSelectCourse(index);
